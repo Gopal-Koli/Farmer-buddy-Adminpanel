@@ -1,0 +1,34 @@
+.body{  
+  font-family: "Roboto Slab", serif; 
+  
+}
+
+/* index bar */
+.MuiButtonBase-root{color: rgb(0, 0, 0) !important;}
+
+/*  Smoothness purpose for submenu in side bar Arrow submenus */
+
+.ReactCollapse--collapse {
+    transition: height 200ms;
+  }
+
+  /* to add a button css for add-products button in admin dashboard */
+
+.btn-green{background: rgb(124, 235, 124)!important;
+  color: black!important;
+  padding: 8px 20px !important;
+  border-color: black;
+
+  
+
+}
+.btn-green:hover{
+  background: rgb(27, 214, 27)
+}
+
+
+
+
+
+
+  
