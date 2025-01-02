@@ -33,7 +33,7 @@ const DashboardBoxes = () => {
 
          {/* To add a 1st Box in Dashboard */}
        <SwiperSlide>
-        <div className="box p-5 cursor-pointer hover:bg-[#f1f1f1ca] rounded-md border border-[#000000] flex items-center gap-4 ">
+        <div className="box p-5 cursor-pointer hover:bg-[#f1f1f1ca] rounded-md border  border-[#000000] flex items-center gap-4 ">
            <FaGifts className='text-[35px] text-[#505ce3]'/>
              <div className="info w-[70%] ">
                <h3>New Orders</h3>
