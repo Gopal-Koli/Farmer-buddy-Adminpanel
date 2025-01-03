@@ -8,6 +8,7 @@ const MyContext=createContext();
 function App() {
 
 const [isSidebarOpen,setisSidebarOpen]=useState(true);
+const [isLogin,setIslogin]=useState(false);
 
 const MyContext=createContext();
 
@@ -20,7 +21,7 @@ const MyContext=createContext();
       
       element: (
         <> <section className='main'>
-          <Header/>
+          
           <div className='contentMain flex'>
               <div className="sidebarWrapper w-[18%]">
               <Sidebar/>
@@ -40,14 +41,16 @@ const MyContext=createContext();
 
   const values={
     isSidebarOpen,
-    setisSidebarOpen
+    setisSidebarOpen,
+    isLogin,
+    setIslogin,
   };
 
   return (
     <>
-    <MyContext.Provider value={values}>
-      {/* Use RouterProvider to render the router */}
-      <RouterProvider router={router} />
+     <MyContext.Provider value={ values}>
+      <Header />
+    
     </MyContext.Provider>
     </>
 
@@ -55,3 +58,4 @@ const MyContext=createContext();
 }
 
 export default App;
+export {MyContext};
