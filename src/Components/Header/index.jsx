@@ -122,13 +122,13 @@ export const Header = () => {
             <Divider/>
 
                                       {/* profile and Logout Section */}
-            <MenuItem onClick={handleCloseMyAcc}className='flex items-center gap-3'>
+            <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
               <FaUser className='text-[17px]'/> <span className='text-[14px] '> Profile </span>{/* To Add Profile  */}
             </MenuItem>
 
            
 
-            <MenuItem onClick={handleCloseMyAcc}className='flex items-center gap-3'>
+            <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
               < LuLogOut className='text-[17px]' /> <span className='text-[14px] '> Log-out </span>{/* To Add a innner  Logput */}
             </MenuItem>
       </Menu>
