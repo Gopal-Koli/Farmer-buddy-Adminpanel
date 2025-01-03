@@ -63,7 +63,7 @@ export const Header = () => {
           </IconButton>
 
           <div className="relative">                                                           {/*Account Avtar  */}
-            <div className="rounded-full w-[35px] overflow-hidden cursor-pointer"onClick={handleClickMyAcc}>
+            <div className="rounded-full w-[35px] overflow-hidden cursor-pointer" onClick={handleClickMyAcc}>
               <img src='https://cdn-icons-png.flaticon.com/512/5019/5019638.png' className='w-full h-full object-cover'/>
 
             </div>
