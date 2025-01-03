@@ -54,7 +54,7 @@ const handleChangeCatFilter=(event)=>{
 };
 */}
 
-     {/* Total Users and Toatl Slaes Line Graph Data Means Months and Conts of the sales and users................ */}
+    {/* Total Users and Toatl Slaes Line Graph Data Means Months and Conts of the sales and users................ */ }
 
     const [chart1Data, setChat1Data] = useState([
         {
@@ -1088,7 +1088,7 @@ const handleChangeCatFilter=(event)=>{
 
 
                 </div>
-                     {/* Fraph................ */}
+                {/* Fraph................ */}
 
 
                 <div className='flex items-center justify-end pt-5 px-4'>
