@@ -38,7 +38,7 @@ export const Sidebar = () => {
       <div className="sidebar fixed top-100% left-0 bg-[#5B6C5D] w-[16%] h-full border-r border-[rgba(0,0,0.1)] py-2 px-2">
         <br /><br />
         <div className="py-2 w-full">
-          <Link to='/'> <img src="https://img.freepik.com/premium-vector/farmers_185822-53.jpg" className='w-[400px] h-[170px] px-4 py-5'></img>
+          <Link to='/'> <img src="https://shorturl.at/B7BOD" className='w-[400px] h-[170px] px-4 py-5'></img>
           </Link>
         </div>
         {/* Dashboard creation for side bar */}

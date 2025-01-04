@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Button from '@mui/material/Button';
-import React, { useContext } from 'react';
+
 // To Add a Menu Icon
 import { IoMdMenu } from "react-icons/io";
 
@@ -18,8 +18,8 @@ import Divider from '@mui/material/Divider';
 //User Icon 
 import { FaUser } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
-import { MyContext } from '../../App.jsx'
-
+import { useContext } from 'react';
+import { MyContext } from '../../App';
 
 // Notification Style code
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -35,8 +35,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export const Header = () => {
-
-
   const [anchorMyAcc, setAnchorMyAcc] = React.useState(null); {/* Account Pop-up */ }
   const openMyAcc = Boolean(anchorMyAcc);
   const handleClickMyAcc = (event) => {
@@ -45,8 +43,6 @@ export const Header = () => {
   const handleCloseMyAcc = () => {
     setAnchorMyAcc(null);
   }
-
-  const context = useContext(MyContext);
   return (
     <header className='fixed top-0 left-0 z-50 w-full h-[auto] pl-52 pr-7 py-2 bg-[#a4e325] shadow-md flex items-center justify-between'>
       <div className="part1">
@@ -66,19 +62,14 @@ export const Header = () => {
             <BsBellFill />
           </StyledBadge>
         </IconButton>
-
         {
-          context.isLogin === true ?
-
-
+          useContext.isLogin === true ?
 
             <div className="relative">                                                           {/*Account Avtar  */}
               <div className="rounded-full w-[35px] overflow-hidden cursor-pointer" onClick={handleClickMyAcc}>
                 <img src='https://cdn-icons-png.flaticon.com/512/5019/5019638.png' className='w-full h-full object-cover' />
 
               </div>
-
-
               <Menu
                 anchorMyAcc={anchorMyAcc}
                 id="account-menu"
@@ -140,19 +131,16 @@ export const Header = () => {
 
 
 
-
-
                 <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
                   < LuLogOut className='text-[17px]' /> <span className='text-[14px] '> Log-out </span>{/* To Add a innner  Logput */}
                 </MenuItem>
               </Menu>
 
-            </div>
-
-
-            : <Button className='btn-blue'>Login</Button>
+            </div> :
+            
+            <Button className='btn-green text-[rgb(255,255,255)] btn-sm rounded-full text-[18px]'>Sign-up</Button>
         }
-
+             {/*  Upper Butoon Colurs Size Remaing to change....................... */}
       </div>
     </header>
 
