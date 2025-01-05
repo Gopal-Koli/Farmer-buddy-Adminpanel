@@ -5,6 +5,7 @@ import Header from '../src/Components/Header/index.jsx';
 import Sidebar from './Components/Sidebar/index.jsx';
 import { createContext, useState } from 'react';
 import Login from './Page/Dashboard/Login/index.jsx'
+import SignUp from './Page/Dashboard/SignUp/index.jsx';
 const MyContext = createContext();
 function App() {
 
@@ -37,19 +38,28 @@ function App() {
         </>
       )
     },
+    // Login page Path Creation
     {
       path: "/login",
 
       element: (
         <>
               <Login />
-           
-
-
-        
+                 
         </>
       )
     },
+    {
+      path: "/sign-up",
+
+      element: (
+        <>
+              <SignUp />
+                 
+        </>
+      )
+    },
+
   ]);
 
 

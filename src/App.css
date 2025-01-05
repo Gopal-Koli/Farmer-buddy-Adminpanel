@@ -26,7 +26,28 @@
   background: rgb(27, 214, 27)
 }
 
-a.active button{background: #e3e3e3 !important;}
+.btn-sm{padding:6px 20px !important;font-size: 13px !important;}
+.btn-lg{padding:8px 20px !important;font-size: 16px !important;}
+
+
+/*Login form css added external*/
+.loginBox {
+  width: 60%; /* Adjust for smaller screens */
+  max-width: 700px; /* Limit width on larger screens */
+  margin: auto; /* Center horizontally */
+  
+  padding: 20px; /* Add padding for inner spacing */
+  overflow: visible; /* Ensure children are visible */
+  
+}
+
+.css-rizt0-MuiTypography-root{
+  font-size:14px !important ;
+} 
+
+.text-primary{
+  color: blue!important;
+}
 
 
 
