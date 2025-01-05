@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 //Side Icons
 import { MdSpaceDashboard } from "react-icons/md";
@@ -13,10 +13,12 @@ import { FaShoppingBag } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { FaAngleDown } from "react-icons/fa6";
 import { Collapse } from 'react-collapse';
-
-
+import { MyContext } from '../../App';
 
 export const Sidebar = () => {
+
+
+  const context = useContext(MyContext);
 
   {/* Function for Arrow For open close Submenu in Main menu */ }
 
@@ -134,14 +136,19 @@ export const Sidebar = () => {
             <Collapse isOpened={submenuIndex === 3 ? true : false}>
               <ul className=' !w-full'>
                 <li className='!w-full'>
-                  <Link to="/products/uploads">  {/*link to  another adding a page */}
-                    <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !text-[14px] !font-[300] !pl-9 flex gap-3'>
+                  {/*link to  another adding a page */}
+                  <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !text-[14px] !font-[300] !pl-9 flex gap-3'
+                    onClick={() => context.setIsOpenFullScreenPanel({
+                      open: true,
+                      model: 'product'
 
-                      {/*  for Uploading the products  products   */}
-                      <span className='block w-[7px] h-[5px] rounded-full bg-[rgba(255,255,255,0.47)]'></span>{" "}
-                      <span className='!text-[#ededea] text-sm italic '>upload Products</span>
-                    </Button>
-                  </Link>
+                    })}> {/*Defined Onclik function to upload a products  */}
+
+                    {/*  for Uploading the products  products   */}
+                    <span className='block w-[7px] h-[5px] rounded-full bg-[rgba(255,255,255,0.47)]'></span>{" "}
+                    <span className='!text-[#ededea] text-sm italic ' >upload Products</span>
+                  </Button>
+
                 </li>
 
 
