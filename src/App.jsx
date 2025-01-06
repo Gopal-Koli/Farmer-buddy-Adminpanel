@@ -10,12 +10,9 @@ import SignUp from './Page/Dashboard/SignUp/index.jsx';
 import Products from './Page/Products/index.jsx';
 import AddProduct from './Page/Products/addProduct.jsx';
 
-import Button from '@mui/material/Button';
+
 import Dialog from '@mui/material/Dialog';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemButton from '@mui/material/ListItemButton';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
+
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -174,31 +171,19 @@ function App() {
                 })}
                 aria-label="close"
               >
-                <IoCloseSharp className='text-white border border-x-white' />
+                <IoCloseSharp className='text-grey-800 border border-black' />
               </IconButton>
               <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                Sound
+                <span className='text-gray-800'> {isOpenFullScreenPanel?.model}</span>
               </Typography>
-              <Button autoFocus color="inherit" onClick={() => setIsOpenFullScreenPanel({
-                open: false
-
-              })}>
-                save
-              </Button>
+             
             </Toolbar>
           </AppBar>
-          <List>
-            <ListItemButton>
-              <ListItemText primary="Phone ringtone" secondary="Titania" />
-            </ListItemButton>
-            <Divider />
-            <ListItemButton>
-              <ListItemText
-                primary="Default notification ringtone"
-                secondary="Tethys"
-              />
-            </ListItemButton>
-          </List>
+
+          {
+            isOpenFullScreenPanel ?.model==="Add Product" && <AddProduct />}
+          
+          
         </Dialog>
 
 

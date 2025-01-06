@@ -28,7 +28,7 @@ const Products = () => {
                 <h1 className='font-[700] text-[20px] text-gray-800'>Products</h1>
                 <Button className='!bg-blue-500 !shadow-md !nk-auto flex gap-3' onClick={() => context.setIsOpenFullScreenPanel({
                     open: true,
-                    model: 'product'
+                    model: 'Add Product'
 
                 })}>
 

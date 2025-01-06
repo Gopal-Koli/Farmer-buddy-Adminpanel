@@ -44,7 +44,7 @@ export const Header = () => {
     setAnchorMyAcc(null);
   }
   return (
-    <header className='fixed top-0 left-0 z-50 w-full h-[auto] pl-52 pr-7 py-2 bg-[#a4e325] shadow-md flex items-center justify-between'>
+    <header className='fixed top-0 left-0 z-50 w-full h-[auto] pl-52 pr-7 py-2 bg-[#6bfa05] shadow-md flex items-center justify-between'>
       <div className="part1">
         <Button className='!w-[40px] !h-[40px] !rounded-full !min-w-[40px] !text-[rgb(38,2,2)]'>
           <IoMdMenu className='text-[25px] text-[rgba(0,0,0,0.8)]' />
