@@ -19,6 +19,10 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { IoCloseSharp } from "react-icons/io5";
 import Slide from '@mui/material/Slide';
+import HomeSliderBanners from './Page/HomeSliderBanners/index.jsx';
+import AddHomeSlide from './Page/HomeSliderBanners/addHomeSlide.jsx';
+import CategoryList from './Page/Categegory/index.jsx';
+import AddCategory from './Page/Categegory/addCategory.jsx';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -124,6 +128,51 @@ function App() {
 
 
 
+    {
+      path: "/homeSlider/list",
+
+      element: (
+        <> <section className='main'>
+          <Header />
+          <div className='contentMain flex'>
+            <div className="sidebarWrapper w-[18%]">
+              <Sidebar />
+            </div>
+            <div className="contentRight py-4 px-4 w-[82%]">
+              < HomeSliderBanners />
+            </div>
+          </div>
+
+
+        </section>
+        </>
+      )
+    },
+
+
+    {
+      path: "/category/list",
+
+      element: (
+        <> <section className='main'>
+          <Header />
+          <div className='contentMain flex'>
+            <div className="sidebarWrapper w-[18%]">
+              <Sidebar />
+            </div>
+            <div className="contentRight py-4 px-4 w-[82%]">
+              < CategoryList />
+            </div>
+          </div>
+
+
+        </section>
+        </>
+      )
+    },
+
+
+
   ]);
 
 
@@ -176,14 +225,25 @@ function App() {
               <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
                 <span className='text-gray-800'> {isOpenFullScreenPanel?.model}</span>
               </Typography>
-             
+
             </Toolbar>
           </AppBar>
 
           {
-            isOpenFullScreenPanel ?.model==="Add Product" && <AddProduct />}
-          
-          
+            isOpenFullScreenPanel?.model === "Add Product" && <AddProduct />
+          }
+
+          {
+            isOpenFullScreenPanel?.model === "Add Home Slide" && <AddHomeSlide />
+          }
+
+          {
+            isOpenFullScreenPanel?.model === "Add New Category" && <AddCategory />
+          }
+
+
+
+
         </Dialog>
 
 
