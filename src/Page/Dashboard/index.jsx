@@ -1,4 +1,4 @@
-import React, { PureComponent, useState } from 'react'
+import React, { useContext, useState, } from 'react'
 import DashboardBoxes from '../../Components/DashboardBoxes';
 import { Link } from 'react-router-dom';
 {/*Add a icons in upper dashobard */ }
@@ -21,6 +21,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 {/*for chart */ }
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
+import { MyContext } from '../../App';
 
 
 
@@ -29,6 +30,7 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 {/*Added a Dashobatd function */ }
 const Dashboard = () => {
+    const context = useContext(MyContext);
 
 
     {/*Sub Table open Functionn on arrow click of the main display table */ }
@@ -153,7 +155,11 @@ const handleChangeCatFilter=(event)=>{
 
                 {/*for button creation in this dashboard  */}
 
-                <Button className='btn-green !capitalize  text-[20px]   gap-x-3 '  ><FaPlus className='' />
+                <Button className='btn-green !capitalize  text-[20px]   gap-x-3 ' onClick={() => context.setIsOpenFullScreenPanel({
+                    open: true,
+                    model: 'Add Product'
+
+                })}  ><FaPlus className='' />
                     Add Products</Button>
             </div>
 

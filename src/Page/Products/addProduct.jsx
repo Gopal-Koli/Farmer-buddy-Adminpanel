@@ -5,11 +5,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Rating from '@mui/material/Rating';
 import UploadBox from '../../Components/UploadBox';
+{/*import a react lazy img view for blur  or slowly open  */ }
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+{/* for cross react logo to close the or remve the img */ }
 import { IoMdClose } from "react-icons/io";
 import { Button } from '@mui/material';
 import { MdOutlineDriveFolderUpload } from "react-icons/md";
+{/* upload icon for pub;lish and view  */ }
 import { IoMdCloudUpload } from "react-icons/io";
 
 
@@ -40,14 +43,16 @@ const AddProduct = () => {
 
             <form className='form p-8 py-3 '>
                 <div className='scroll  max-h-[72vh] pr-4 overflow-y-scroll'>
+                    {/*  define grid-cols1 single 1st cell  for product name  */}
                     <div className='grid grid-cols-1 mb-3'>
+
                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Name</h3>
                             <input type="text" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.1)] 
                         focus:outline-none focus:border-[rgba(0,0,0,0.4)] rounded-sm text-sm ' />
                         </div>
                     </div>
-
+                    {/* define grid-cols1 single  2nd cell  for product Description  */}
                     <div className='grid grid-cols-1 mb-3'>
                         <div className='col'>
                             <h3 className='text-[14px] font-[500] mb-1 text-black'>Product Description</h3>
@@ -56,8 +61,9 @@ const AddProduct = () => {
                         </div>
                     </div>
 
-
+                    {/* define grid-cols4 in a single  cell  4 collams  */}
                     <div className='grid grid-cols-4 mb-3 gap-4'>
+                        {/* drop down list for product categroy */}
                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1  text-black'>Product Catgory</h3>
                             <Select
@@ -81,6 +87,8 @@ const AddProduct = () => {
 
                         </div>
 
+                        {/* drop down list for product Subcategroy */}
+
                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Sub Catgory</h3>
                             <Select
@@ -102,13 +110,15 @@ const AddProduct = () => {
 
                         </div>
 
-
+                        {/* to take input as number for product price*/}
                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Price</h3>
                             <input type="number" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.2)] 
                         focus:outline-none focus:border-[rgba(0,0,0,0.4)] rounded-sm text-sm' />
                         </div>
 
+
+                        {/* to take input as number for product  old price*/}
                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Old Price</h3>
                             <input type="number" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.2)] 
@@ -119,7 +129,11 @@ const AddProduct = () => {
 
 
                     </div>
+
+                    {/* define grid-cols4 in a single  cell  4 collams  */}
                     <div className='grid grid-cols-4 mb-3 gap-4'>
+
+                        {/* drop down list for take a input is Featured True or false */}
                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1  text-black'>Is Featured?</h3>
                             <Select
@@ -140,23 +154,20 @@ const AddProduct = () => {
 
                         </div>
 
-
+                        {/* to take input as number for product stock*/}
                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Stock</h3>
                             <input type="text" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.1)] 
                         focus:outline-none focus:border-[rgba(0,0,0,0.4)] rounded-sm text-sm ' />
                         </div>
 
+                        {/* to take input as number for product Discount*/}
                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Discount</h3>
                             <input type="number" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.1)] 
                         focus:outline-none focus:border-[rgba(0,0,0,0.4)] rounded-sm text-sm ' />
                         </div>
-
-
-                    </div>
-
-                    <div className='grid grid-cols-4 mb-3 gap-4'>
+                        {/* drop down list for take a input of the product Weight */}
                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1  text-black'>Product Weight</h3>
                             <Select
@@ -183,6 +194,12 @@ const AddProduct = () => {
                             </Select>
 
                         </div>
+
+
+                    </div>
+
+                    <div className='grid grid-cols-4 mb-3 gap-4'>
+
                         {/* For the Product Size Extra Drop down for Later Use............................................
                     <div className='col'>
                         <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Sub Catgory</h3>
@@ -206,6 +223,7 @@ const AddProduct = () => {
                     </div>
  */}
 
+                        {/*  define a product rating */}
                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Rating</h3>
                             <Rating name="half-rating" defaultValue={4.5} precision={0.5} />
@@ -218,10 +236,13 @@ const AddProduct = () => {
 
                     </div>
 
+                    {/*  to take a meadia input like images of the product  */}
 
                     <div className='col w-full p-5 px-0'>
                         <h3 className='font[700] text-[18px]' >Media and Images</h3>
 
+
+                        {/*  Upload box wrapper  */}
                         <div className='grid grid-cols-7 gap-4'>
                             <div className='uploadBoxWrapper relative '>
                                 <span className='absolute -top-[5px] -right-[5px]  w-[20px] h-[20px] rounded-full overflow-hidden bg-red-700 
@@ -380,13 +401,13 @@ const AddProduct = () => {
 
 
                 </div>
-               
-                <hr/>
+
+                <hr />
                 <br />
                 {/* now we define the type button We Romve The type button and define the type='submit.........' */}
-                <Button type="button" className='!bg-slate-400 btn-lg w-full '> 
+                <Button type="button" className='!bg-slate-400 btn-lg w-full '>
                     <IoMdCloudUpload className='text-[25px]  text-white' />
-                   <span className=' text-white pl-2 '> Publish & View </span>
+                    <span className=' text-white pl-2 '> Publish & View </span>
 
                 </Button>
 

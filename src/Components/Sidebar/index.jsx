@@ -14,6 +14,7 @@ import { IoLogOut } from "react-icons/io5";
 import { FaAngleDown } from "react-icons/fa6";
 import { Collapse } from 'react-collapse';
 import { MyContext } from '../../App';
+import AddProduct from '../../Page/Products/addProduct'
 
 export const Sidebar = () => {
 
@@ -136,17 +137,19 @@ export const Sidebar = () => {
             <Collapse isOpened={submenuIndex === 3 ? true : false}>
               <ul className=' !w-full'>
                 <li className='!w-full'>
-                  {/*link to  another adding a page */}
+                  {/*link to  another adding a page  and oclick to open a upload products panel*/}
                   <Button className='!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !text-[14px] !font-[300] !pl-9 flex gap-3'
                     onClick={() => context.setIsOpenFullScreenPanel({
                       open: true,
-                      model: 'product'
+                      model: 'Add Product'
 
                     })}> {/*Defined Onclik function to upload a products  */}
+
 
                     {/*  for Uploading the products  products   */}
                     <span className='block w-[7px] h-[5px] rounded-full bg-[rgba(255,255,255,0.47)]'></span>{" "}
                     <span className='!text-[#ededea] text-sm italic ' >upload Products</span>
+
                   </Button>
 
                 </li>
