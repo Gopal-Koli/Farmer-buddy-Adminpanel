@@ -17,7 +17,7 @@ const AddHomeSlide = () => {
                                 flex items-center justify-center z-50  cursor-pointer'>
                                 <IoMdClose className=' text-white text-[20px] ' /></span>
 
-
+                            {/* Lazy load for blur image effect */}
                             <div className='uploadBox p-0 rounded-md  overflow-hidden border border-dashed border-[rgba(0,0,0,0.3)]
                               h-[150px] w-[100%]  bg-gray-100 cusrsor-pointer hover:bg-gray-200 flex items-center justify-center flex-col relative'>
 
@@ -37,7 +37,7 @@ const AddHomeSlide = () => {
 
 
 
-                     
+
 
 
 
@@ -45,16 +45,16 @@ const AddHomeSlide = () => {
                     </div>
 
                 </div>
-                <br/>
-                
+                <br />
+
                 <br />
                 {/* now we define the type button We Romve The type button and define the type='submit.........' */}
                 <div className='w-[250px]'>
-                <Button type="button" className='!bg-slate-400 btn-lg w-full flex gap-3 '>
-                    <IoMdCloudUpload className='text-[25px]  text-white' />
-                    <span className=' text-white pl-2 '> Publish & View </span>
+                    <Button type="button" className='!bg-slate-400 btn-lg w-full flex gap-3 '>
+                        <IoMdCloudUpload className='text-[25px]  text-white' />
+                        <span className=' text-white pl-2 '> Publish & View </span>
 
-                </Button>
+                    </Button>
                 </div>
             </form>
         </section>

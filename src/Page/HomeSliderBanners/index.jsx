@@ -31,7 +31,7 @@ const HomeSliderBanners = () => {
 
     return (
         <>
-            <div className='card bg-gray-100 shadow-md rounded-md p-5 mt-12 flex items-center justify-between'>
+            <div className='card bg-gray-100 shadow-md rounded-md  p-5 mt-12 flex items-center justify-between'>
                 <h1 className='font-[700] text-[20px] text-gray-800'>Home Slider Banners</h1>
                 <Button className='!bg-blue-500 !shadow-md !nk-auto flex gap-3' onClick={() => context.setIsOpenFullScreenPanel({
                     open: true,
@@ -49,7 +49,7 @@ const HomeSliderBanners = () => {
 
             </div>
             <br />
-            <div className='col w-[16%] ml-auto'>
+            <div className='col w-[50%] border ml-auto'>
                 <SearchBox />
             </div>
             <br />
@@ -89,7 +89,7 @@ const HomeSliderBanners = () => {
                                 </div>
                             </td>
 
-                            <td>  {/* 1st td For Product */}
+                            <td>  {/* 1st td*/}
 
                                 <div className='flex items-center gap-4 '>
                                     {/* Div For Image  */}
@@ -118,7 +118,7 @@ const HomeSliderBanners = () => {
                                         </Button>
                                     </Tooltip>
 
-                                    {/* To Created a button  for View  product */}
+                                    {/* To Created a button  for View   */}
 
                                     <Tooltip title="View Product" placement="top">
                                         <Button className='!w-[35px] !h-[35px]  !border-[rgba(0,0,0,0.7)] !rounded-full hover:bg-[#ccc] !min-w-[35px]'>
@@ -128,7 +128,7 @@ const HomeSliderBanners = () => {
 
 
 
-                                    {/* To Created a button  for Remove  product */}
+                                    {/* To Created a button  for Remove   */}
                                     <Tooltip title="Remove Product" placement="top">
                                         <Button className='!w-[35px] !h-[35px]  !border-[rgba(0,0,0,0.7)] !rounded-full hover:bg-[#ccc] !min-w-[35px]'>
                                             <MdDeleteForever className='text-[25px] text-red-700 ' />
@@ -140,7 +140,7 @@ const HomeSliderBanners = () => {
 
 
 
-                        {/* 2nd Row OF the Product Table ......................*/}
+                        {/* 2nd Row OF the  Table ......................*/}
 
                         <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <td className="p-4 py-2">
@@ -200,20 +200,20 @@ const HomeSliderBanners = () => {
 
 
 
-                        {/* 3rd Row OF the Product Table ......................*/}
+                        {/* 3rd Row OF the  Table ......................*/}
 
 
 
-                        {/* 4th Row OF the Product Table ......................*/}
+                        {/* 4th Row OF the  Table ......................*/}
 
 
 
 
-                        {/* 5th Row OF the Product Table ......................*/}
+                        {/* 5th Row OF the  Table ......................*/}
 
 
 
-                        {/* 6th Row OF the Product Table ......................*/}
+                        {/* 6th Row OF the  Table ......................*/}
 
 
 

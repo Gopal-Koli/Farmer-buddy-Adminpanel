@@ -42,7 +42,7 @@ const Products = () => {
 
             </div>
             <br />
-            <div className='col w-[16%] ml-auto'>
+            <div className='col w-[50%] ml-auto'>
                 <SearchBox />
             </div>
             <br />

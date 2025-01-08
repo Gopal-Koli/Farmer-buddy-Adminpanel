@@ -31,6 +31,7 @@ const CategoryList = () => {
 
     return (
         <>
+            {/* Heading of the Category list................ */}
             <div className='card bg-gray-100 shadow-md rounded-md p-5 mt-12 flex items-center justify-between'>
                 <h1 className='font-[700] text-[20px] text-gray-800'>Category List</h1>
                 <Button className='!bg-blue-500 !shadow-md !nk-auto flex gap-3' onClick={() => context.setIsOpenFullScreenPanel({
@@ -39,8 +40,11 @@ const CategoryList = () => {
 
                 })}>
 
+
+
                     <IoMdAdd className='text-white text-[20px] ml-auto ' />
                     <h6 className='text-white' >Add New Category</h6></Button>
+                {/* Export Button................ */}
                 <Button className='!bg-blue-500 !shadow-md  flex gap-3'>
                     <TiExport className='text-white text-[20px] ml-auto ' />
                     <h6 className='text-white'>Export</h6></Button>
@@ -49,7 +53,8 @@ const CategoryList = () => {
 
             </div>
             <br />
-            <div className='col w-[16%] ml-auto'>
+            {/* External searchbox link here  */}
+            <div className='col w-[50%] ml-auto'>
                 <SearchBox />
             </div>
             <br />
@@ -60,7 +65,7 @@ const CategoryList = () => {
                         <tr>
                             <th scope="col" className="p-4 py-3" width="10%">
                                 <div className='w-[60px]'>
-                                    Selecet
+                                    Select
 
                                 </div>
                             </th>
@@ -81,7 +86,7 @@ const CategoryList = () => {
                     </thead>
                     <tbody>
 
-                        {/* 1st Row OF the Product Table ......................*/}
+                        {/* 1st Row OF the  Table ......................*/}
                         <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <td className="p-4 py-2">
                                 <div className='w-[60px]'>
@@ -89,7 +94,7 @@ const CategoryList = () => {
                                 </div>
                             </td>
 
-                            <td>  {/* 1st td For Product */}
+                            <td>  {/* 1st td For  */}
 
                                 <div className='flex items-center gap-4 '>
                                     {/* Div For Image  */}
@@ -99,7 +104,6 @@ const CategoryList = () => {
                                                 className='w-full group-hover:scale-110 transition-all'></img>
                                         </Link>
                                     </div>
-                                    {/* Following 1st div for name and Description ofn the product  and also creatd link on that */}
 
 
                                 </div>
@@ -107,18 +111,18 @@ const CategoryList = () => {
 
 
 
-                            {/* To Created a button  for Edit View and romve product  */}
+
                             <td className="p-4 py-2">
                                 <div className='flex items-center gap-1'>
 
-                                    {/* To Created a button  for Edit  product and Tooltip is added for the showing the name on button  */}
+                                    {/* To Created a button  for Edit   and Tooltip is added for the showing the name on button  */}
                                     <Tooltip title="Edit Product" placement="top">
                                         <Button className='!w-[35px] !h-[35px]  !border-[rgba(0,0,0,0.7)] !rounded-full hover:bg-[#ccc] !min-w-[35px]'>
                                             <FaEdit className='text-[30px] text-black-400 ' />
                                         </Button>
                                     </Tooltip>
 
-                                    {/* To Created a button  for View  product */}
+                                    {/* To Created a button  for View  */}
 
                                     <Tooltip title="View Product" placement="top">
                                         <Button className='!w-[35px] !h-[35px]  !border-[rgba(0,0,0,0.7)] !rounded-full hover:bg-[#ccc] !min-w-[35px]'>
@@ -128,7 +132,7 @@ const CategoryList = () => {
 
 
 
-                                    {/* To Created a button  for Remove  product */}
+                                    {/* To Created a button  for Remove */}
                                     <Tooltip title="Remove Product" placement="top">
                                         <Button className='!w-[35px] !h-[35px]  !border-[rgba(0,0,0,0.7)] !rounded-full hover:bg-[#ccc] !min-w-[35px]'>
                                             <MdDeleteForever className='text-[25px] text-red-700 ' />
@@ -140,7 +144,7 @@ const CategoryList = () => {
 
 
 
-                        {/* 2nd Row OF the Product Table ......................*/}
+                        {/* 2nd Row OF the  Table ......................*/}
 
                         <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <td className="p-4 py-2">
@@ -149,7 +153,7 @@ const CategoryList = () => {
                                 </div>
                             </td>
 
-                            <td>  {/* 1st td For Product */}
+                            <td>  {/* 1st td For  */}
 
                                 <div className='flex items-center gap-4 '>
                                     {/* Div For Image  */}
@@ -159,7 +163,6 @@ const CategoryList = () => {
                                                 className='w-full group-hover:scale-110 transition-all'></img>
                                         </Link>
                                     </div>
-                                    {/* Following 1st div for name and Description ofn the product  and also creatd link on that */}
 
 
                                 </div>
@@ -167,18 +170,18 @@ const CategoryList = () => {
 
 
 
-                            {/* To Created a button  for Edit View and romve product  */}
+                            {/* To Created a button  for Edit View and romve   */}
                             <td className="p-4 py-2">
                                 <div className='flex items-center gap-1'>
 
-                                    {/* To Created a button  for Edit  product and Tooltip is added for the showing the name on button  */}
+                                    {/* To Created a button  for Edit   and Tooltip is added for the showing the name on button  */}
                                     <Tooltip title="Edit Product" placement="top">
                                         <Button className='!w-[35px] !h-[35px]  !border-[rgba(0,0,0,0.7)] !rounded-full hover:bg-[#ccc] !min-w-[35px]'>
                                             <FaEdit className='text-[30px] text-black-400 ' />
                                         </Button>
                                     </Tooltip>
 
-                                    {/* To Created a button  for View  product */}
+                                    {/* To Created a button  for View   */}
 
                                     <Tooltip title="View Product" placement="top">
                                         <Button className='!w-[35px] !h-[35px]  !border-[rgba(0,0,0,0.7)] !rounded-full hover:bg-[#ccc] !min-w-[35px]'>
@@ -217,7 +220,6 @@ const CategoryList = () => {
                                                 className='w-full group-hover:scale-110 transition-all'></img>
                                         </Link>
                                     </div>
-                                    {/* Following 1st div for name and Description ofn the product  and also creatd link on that */}
 
 
                                 </div>
@@ -329,6 +331,8 @@ const CategoryList = () => {
 
 
                 </table>
+                {/* Creation of the pagination */}
+
                 <div className='flex items-center justify-end pt-4 pb-4'>
                     <Pagination count={10} color="primary" />
                 </div>

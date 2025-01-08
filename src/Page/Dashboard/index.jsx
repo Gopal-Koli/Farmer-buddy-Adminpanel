@@ -167,7 +167,7 @@ const handleChangeCatFilter=(event)=>{
 
             <div className='card my-4'>
 
-                {/* Table added from here for Recent Ordera  */}
+                {/* Table added from here for product Ordera  */}
                 <div className='flex items-center justify-between px-3 py-4'>
                     <h2 className='text-[20px] font-[500]'> Products</h2>
 

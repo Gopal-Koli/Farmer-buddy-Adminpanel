@@ -23,6 +23,8 @@ import HomeSliderBanners from './Page/HomeSliderBanners/index.jsx';
 import AddHomeSlide from './Page/HomeSliderBanners/addHomeSlide.jsx';
 import CategoryList from './Page/Categegory/index.jsx';
 import AddCategory from './Page/Categegory/addCategory.jsx';
+import Users from './Page/Users/index.jsx';
+import Orders from './Page/Orders/index.jsx';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -127,7 +129,7 @@ function App() {
     },
 
 
-
+    //Upload home slideer list path
     {
       path: "/homeSlider/list",
 
@@ -149,7 +151,7 @@ function App() {
       )
     },
 
-
+    //Upload category list path  
     {
       path: "/category/list",
 
@@ -162,6 +164,52 @@ function App() {
             </div>
             <div className="contentRight py-4 px-4 w-[82%]">
               < CategoryList />
+            </div>
+          </div>
+
+
+        </section>
+        </>
+      )
+    },
+
+
+//Path Creation for users 
+    {
+      path: "/users",
+
+      element: (
+        <> <section className='main'>
+          <Header />
+          <div className='contentMain flex'>
+            <div className="sidebarWrapper w-[18%]">
+              <Sidebar />
+            </div>
+            <div className="contentRight py-4 px-4 w-[82%]">
+              < Users />
+            </div>
+          </div>
+
+
+        </section>
+        </>
+      )
+    },
+
+
+    //Path Creation for Orders
+    {
+      path: "/orders",
+
+      element: (
+        <> <section className='main'>
+          <Header />
+          <div className='contentMain flex'>
+            <div className="sidebarWrapper w-[18%]">
+              <Sidebar />
+            </div>
+            <div className="contentRight py-4 px-4 w-[82%]">
+              < Orders />
             </div>
           </div>
 
@@ -228,15 +276,17 @@ function App() {
 
             </Toolbar>
           </AppBar>
+          {/* for  opening a add Product panel  */}
 
           {
             isOpenFullScreenPanel?.model === "Add Product" && <AddProduct />
           }
 
+          {/* for  opening a add Home Slide Banners  panel  */}
           {
             isOpenFullScreenPanel?.model === "Add Home Slide" && <AddHomeSlide />
           }
-
+          {/* for  opening a Peroduct categy  panel  */}
           {
             isOpenFullScreenPanel?.model === "Add New Category" && <AddCategory />
           }

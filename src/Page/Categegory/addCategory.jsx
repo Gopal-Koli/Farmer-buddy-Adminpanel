@@ -11,16 +11,17 @@ const AddCategory = () => {
 
             <form className='form p-8 py-3 '>
                 <div className='scroll  max-h-[72vh] pr-4  pt-4overflow-y-scroll'>
-                <div className='grid grid-cols-1 mb-3'>
-
-<div className='col w-[28%]'>
-    <h3 className='text-[14px] font-[600] mb-1 text-black'>Category Name</h3>
-    <input type="text" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.1)] 
-focus:outline-none focus:border-[rgba(0,0,0,0.4)] rounded-sm text-sm ' />
-</div>
-</div>
-<br/>
-<h3 className='text-[18px] font-[600] mb-1 text-black'>Category Image</h3>
+                    <div className='grid grid-cols-1 mb-3'>
+                        {/* to define a name of the category */}
+                        <div className='col w-[28%]'>
+                            <h3 className='text-[14px] font-[600] mb-1 text-black'>Category Name</h3>
+                            <input type="text" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.1)] 
+                               focus:outline-none focus:border-[rgba(0,0,0,0.4)] rounded-sm text-sm ' />
+                        </div>
+                    </div>
+                    <br />
+                    {/* to define a Image of the category */}
+                    <h3 className='text-[18px] font-[600] mb-1 text-black'>Category Image</h3>
                     <div className='grid grid-cols-7 gap-4'>
                         <div className='uploadBoxWrapper relative '>
                             <span className='absolute -top-[5px] -right-[5px]  w-[20px] h-[20px] rounded-full overflow-hidden bg-red-700 
