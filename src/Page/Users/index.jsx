@@ -18,6 +18,8 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { SlCalender } from "react-icons/sl";
+
 
 
 
@@ -71,7 +73,13 @@ const Users = () => {
                             </th>
                             {/* table heading for User Address*/}
                             <th scope="col" className="px-4 py-3">
-                                User Address                            </th>
+                                User Address
+                            </th>
+
+                            {/* table heading for Date of the creation*/}
+                            <th scope="col" className="px-4 py-3">
+                                Created Date
+                            </th>
 
 
 
@@ -95,7 +103,7 @@ const Users = () => {
 
                                 <div className='flex items-center gap-4  pt-1 pb-1'>
                                     {/* Div For Image  */}
-                                    <div className='img w-[65px] h-[65px] rounded-md overflow-hidden group'>
+                                    <div className='img w-[45px] h-[45px] rounded-md overflow-hidden group'>
                                         <Link to="/product/45745">   {/* Link Created for the image */}
                                             <img src='https://mui.com/static/images/avatar/2.jpg'
                                                 className='w-full group-hover:scale-110 transition-all'></img>
@@ -140,6 +148,15 @@ const Users = () => {
                                     <FaHome className='  text-black text-[20px]' /> Ambivali Kalyan-Maharashtra
                                 </span>
                             </td>
+                            {/* cpollam for Accont creation date */}
+
+                            <td className="p-4 py-2">
+                                <span className=' text-[15px] flex items-center gap-2 font-[400] '>
+                                    <SlCalender className='text-black text-[20px]' />
+                                    <h3 className='font-[300] text-black text-[14px]'> 09-01-2025 </h3>
+                                </span>
+                            </td>
+
 
 
                         </tr>
@@ -158,7 +175,7 @@ const Users = () => {
 
                                 <div className='flex items-center gap-4 pt-1 pb-1 '>
                                     {/* Div For Image  */}
-                                    <div className='img w-[65px] h-[65px] rounded-md overflow-hidden group'>
+                                    <div className='img w-[45px] h-[45px] rounded-md overflow-hidden group'>
                                         <Link to="/product/45745">   {/* Link Created for the image */}
                                             <img src='https://mui.com/static/images/avatar/1.jpg'
                                                 className='w-full group-hover:scale-110 transition-all'></img>
@@ -201,6 +218,14 @@ const Users = () => {
                             <td className="p-4 py-2">
                                 <span className=' text-[15px] flex items-center gap-2 font-[400] '>
                                     <FaHome className='  text-black text-[20px]' /> DivaThane-Maharashtra
+                                </span>
+                            </td>
+                            {/* cpollam for Accont creation date */}
+
+                            <td className="p-4 py-2">
+                            <span className=' text-[15px] flex items-center gap-2 font-[400] '>
+                                    <SlCalender className='text-black text-[20px]'/>
+                                    <h3 className='font-[300] text-black text-[14px]'> 10-01-2025 </h3>
                                 </span>
                             </td>
 

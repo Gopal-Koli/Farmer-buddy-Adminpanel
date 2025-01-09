@@ -87,28 +87,8 @@ const AddProduct = () => {
 
                         </div>
 
-                        {/* drop down list for product Subcategroy */}
 
-                        <div className='col'>
-                            <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Sub Catgory</h3>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="productCatDrop"
-                                size='small'
-                                className='w-full'
-                                value={productSubCat}
-                                label="Category"
-                                onChange={handleChangeProductSubCat}
-                            >
-                                <MenuItem value={null}>None</MenuItem>
-                                <MenuItem value={8}>Cow</MenuItem>
-                                <MenuItem value={9}>Buffalow</MenuItem>
-                                <MenuItem value={9}>Goat</MenuItem>
-
-
-                            </Select>
-
-                        </div>
+                       
 
                         {/* to take input as number for product price*/}
                         <div className='col'>
@@ -126,15 +106,8 @@ const AddProduct = () => {
                         </div>
 
 
-
-
-                    </div>
-
-                    {/* define grid-cols4 in a single  cell  4 collams  */}
-                    <div className='grid grid-cols-4 mb-3 gap-4'>
-
-                        {/* drop down list for take a input is Featured True or false */}
-                        <div className='col'>
+                          {/* drop down list for take a input is Featured True or false */}
+                          <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1  text-black'>Is Featured?</h3>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -154,21 +127,18 @@ const AddProduct = () => {
 
                         </div>
 
-                        {/* to take input as number for product stock*/}
-                        <div className='col'>
-                            <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Stock</h3>
-                            <input type="text" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.1)] 
-                        focus:outline-none focus:border-[rgba(0,0,0,0.4)] rounded-sm text-sm ' />
-                        </div>
 
-                        {/* to take input as number for product Discount*/}
-                        <div className='col'>
-                            <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Discount</h3>
-                            <input type="number" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.1)] 
-                        focus:outline-none focus:border-[rgba(0,0,0,0.4)] rounded-sm text-sm ' />
-                        </div>
-                        {/* drop down list for take a input of the product Weight */}
-                        <div className='col'>
+
+
+
+                    </div>
+
+                    {/* define grid-cols4 in a single  cell  4 collams  */}
+                    <div className='grid grid-cols-4 mb-3 gap-4'>
+
+
+                         {/* drop down list for take a input of the product Weight */}
+                         <div className='col'>
                             <h3 className='text-[14px] font-[600] mb-1  text-black'>Product Weight</h3>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -195,6 +165,22 @@ const AddProduct = () => {
 
                         </div>
 
+
+                      
+                        {/* to take input as number for product stock*/}
+                        <div className='col'>
+                            <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Stock</h3>
+                            <input type="text" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.1)] 
+                        focus:outline-none focus:border-[rgba(0,0,0,0.4)] rounded-sm text-sm ' />
+                        </div>
+
+                        {/* to take input as number for product Discount*/}
+                        <div className='col'>
+                            <h3 className='text-[14px] font-[600] mb-1 text-black'>Product Discount</h3>
+                            <input type="number" className='w-full h-[40px] p-3 border border-[rgba(0,0,0,0.1)] 
+                        focus:outline-none focus:border-[rgba(0,0,0,0.4)] rounded-sm text-sm ' />
+                        </div>
+                       
 
                     </div>
 

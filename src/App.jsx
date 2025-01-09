@@ -25,6 +25,9 @@ import CategoryList from './Page/Categegory/index.jsx';
 import AddCategory from './Page/Categegory/addCategory.jsx';
 import Users from './Page/Users/index.jsx';
 import Orders from './Page/Orders/index.jsx';
+import ForgotPassword from './Page/ForgotPassword/index.jsx';
+import VerifyAccount from './Page/VerifyAccount/index.jsx';
+import ChangePassword from './Page/ChangePassword/index.jsx';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -81,6 +84,48 @@ function App() {
         </>
       )
     },
+
+
+ // forgot password page Path Creation
+
+    {
+      path: "/forgot-password",
+
+      element: (
+        <>
+          <ForgotPassword />
+
+        </>
+      )
+    },
+
+
+     // Verify acoount creation OTP
+
+     {
+      path: "/verify-account",
+
+      element: (
+        <>
+          <VerifyAccount />
+
+        </>
+      )
+    },
+
+       // change password page path 
+
+       {
+        path: "/change-password",
+  
+        element: (
+          <>
+            <ChangePassword/>
+  
+          </>
+        )
+      },
+
     //Register page Path Creation
     {
       path: "/sign-up",
