@@ -1,7 +1,7 @@
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 
-import { Link, NavLink } from 'react-router-dom';
-import React, { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 
 
 
@@ -16,24 +16,73 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { IoIosEye } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa";
+import { postData } from '../../../utils/api';
+import { MyContext } from '../../../App.jsx';
 
 
 const Login = () => {
 
     {/* Function Creation for sign in Loading buttons  */ }
     const [loadingGoogle, setLoadingGoogle] = React.useState(false);
-    const [loadingFb, setLoadingFb] = React.useState(false);
+    const [isLoading, setIsLoading] = useState(false)
 
-   const [isPasswordShow,setisPasswordShow]=useState(false);
+    const [isPasswordShow, setisPasswordShow] = useState(false);
+    const [formFields, setFormFields] = useState({
+        email: "",
+        password: ""
+    })
 
+    const context = useContext(MyContext);
+    const history = useNavigate();
     function handleClickGoogle() {
         setLoadingGoogle(true);
     }
 
-    function handleClickFb() {
-        setLoadingFb(true);
-    }
 
+
+    const onChangeInput = (e) => {
+        const { name, value } = e.target
+        setFormFields(() => {
+            return {
+                ...formFields,
+                [name]: value
+            }
+        })
+    }
+    const validateValues = Object.values(formFields).every(el => el)
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        setIsLoading(true)
+
+        if (formFields.email === "") {
+            context.opentoast("error", "Please Provide Email")
+        }
+        if (formFields.password === "") {
+            context.opentoast("error", "Please Provide password")
+        }
+        postData('/api/user/login', formFields, { withCredentials: true })
+            .then((res) => {
+                console.log(res)
+                if (res?.error !== true) {
+                    context.opentoast("success", res?.message)
+                    setIsLoading(false)
+                    localStorage.setItem("userEmail", formFields.email)
+                    setFormFields({
+                        email: "",
+                        password: ""
+                    })
+                    localStorage.setItem("accessToken", res?.data?.accessToken)
+                    localStorage.setItem("refreshToken", res?.data?.refreshToken)
+                    navigateTo('/')
+                    context.setisLogin(true)
+                }
+                else {
+                    context.opentoast("error", res?.message)
+                    setIsLoading(false)
+                }
+            })
+    };
 
 
     return (
@@ -54,11 +103,11 @@ const Login = () => {
 
                     {/* Register button   */}
                     <NavLink to="/sign-up" exact={true} activeClassName="isActive">
-                    <Button className="border !bg-blue-300 !text-[18px] !rounded-lg !px-5 !py-2  flex gap-1 ">
-                        < FaRegUser className='text-[18px] ' />Register
-                    </Button>
+                        <Button className="border !bg-blue-300 !text-[18px] !rounded-lg !px-5 !py-2  flex gap-1 ">
+                            < FaRegUser className='text-[18px] ' />Register
+                        </Button>
                     </NavLink>
-               
+
                 </div>
             </header>
 
@@ -95,7 +144,8 @@ const Login = () => {
                         Sign in with Google
                     </LoadingButton>
 
-                    {/* Loding Button for Sign-in  /...sign in with Facebook  */}
+                    {/* Loding Button for Sign-in  /...sign in with Facebook  
+                    
                     <LoadingButton
                         onClick={handleClickFb}
                         endIcon={<MdOutlineFacebook className='!text-[20px]' />}
@@ -106,7 +156,9 @@ const Login = () => {
                     >
                         Sign in with facebook
                     </LoadingButton>
+                    */}
                 </div>
+
 
                 <br />
 
@@ -118,22 +170,35 @@ const Login = () => {
 
                 <br />
 
-                <form className='w-full px-9'>
+                <form className='w-full px-9' onSubmit={handleSubmit}>
                     <div className='form-group mb-4 w-full '>
                         <h4 className='text-[14px] font-[500] mb-1'>E-mail</h4>
-                        <input type="email" className="w-full h-[50px] border   border-[rgba(0,0,0,0.4)] rounded-md focus:border-[rgba(0,0,0,0.7)] focus:outline-none px-3" placeholder='Enter your Email'></input>
+                        <input type="email" className="w-full h-[50px] border   border-[rgba(0,0,0,0.4)] rounded-md focus:border-[rgba(0,0,0,0.7)]
+                         focus:outline-none px-3" placeholder='Enter your Email'
+                            name='email'
+                            value={formFields.email}
+                            disabled={isLoading === true ? true : false}
+                            onChange={onChangeInput}
+
+                        />
                     </div>
 
                     <div className='form-group mb-4 w-full '>
                         <h4 className='text-[14px] font-[500] mb-1'>Password</h4>
                         <div className='relative w-full'>
-                            <input type={isPasswordShow===false?'password':'text'} className="w-full h-[50px] border   border-[rgba(0,0,0,0.4)] rounded-md focus:border-[rgba(0,0,0,0.7)] focus:outline-none px-3" placeholder='Enter your Password'>
-                            </input>
-                            <Button className='!absolute top-[7px] right-[10px] z-50 !rounded-full !w-[35px] !h-[35px] !bg-white !min-w-[35px] !text-gray-600' onClick={()=>setisPasswordShow(!isPasswordShow)}>
+                            <input type={isPasswordShow === false ? 'password' : 'text'} className="w-full h-[50px] border
+                               border-[rgba(0,0,0,0.4)] rounded-md focus:border-[rgba(0,0,0,0.7)] focus:outline-none px-3"
+                                placeholder='Enter your Password'
+                                name='password'
+                                value={formFields.password}
+                                disabled={isLoading === true ? true : false}
+                                onChange={onChangeInput}
+                            />
+                            <Button className='!absolute top-[7px] right-[10px] z-50 !rounded-full !w-[35px] !h-[35px] !bg-white !min-w-[35px] !text-gray-600' onClick={() => setisPasswordShow(!isPasswordShow)}>
                                 {
-                                    isPasswordShow===false? <IoIosEye className='text-[25px]'/>:<FaEyeSlash className='text-[25px]'/>
+                                    isPasswordShow === false ? <IoIosEye className='text-[25px]' /> : <FaEyeSlash className='text-[25px]' />
                                 }
-                                
+
                             </Button>
                         </div>
                     </div>
@@ -144,7 +209,13 @@ const Login = () => {
                         <Link to="/forgot-password" className='text-primary font-[600] text-[15px] hover:underline hover:text-grey-700'>Forgot Passowrd?</Link>
                     </div>
 
-                    <Button className='btn-green btn-lg w-full '> Sign-In</Button>
+                    <Button type='submit'  disabled={!validateValues} className='btn-green btn-lg w-full '>
+                        {
+                            isLoading === true ? <CircularProgress color="inherit" /> 
+                            : "Sign In"
+                        }
+
+                    </Button>
                     <br />
 
 

@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 
 import { Link, NavLink } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import OtpBox from '../../Components/OtpBox';
 
@@ -17,16 +17,66 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { IoIosEye } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa";
 import { use } from 'react';
-
-
+import { MyContext } from '../../App';
+import { useNavigate } from 'react-router-dom';
+import { postData } from '../../utils/api';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const VerifyAccount = () => {
 
     const [otp, setotp] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
+    const context = useContext(MyContext);
+    const history = useNavigate();
     const handleOtpChange = (value) => {
         setotp(value);
     }
 
+    const VerityOTP = (e) => {
+        e.preventDefault();
+        {/*If otp not equal to null the furher process if otp is null show the Plse enter opt msg */ }
+        if (otp !== "") {
+            setIsLoading(true)
+            const actionType = localStorage.getItem("actionType")
+
+            if (actionType !== "forgot-password") {
+                postData("/api/user/verifyEmail", {
+                    email: localStorage.getItem("userEmail"),
+                    otp: otp
+                }).then((res) => {
+                    if (res?.error === false) {
+                        context.opentoast("success", res?.message)
+                        setIsLoading(false)
+                        history('/login')
+                    }
+                    else {
+                        context.opentoast("error", res?.message)
+                        setIsLoading(false)
+                    }
+                })
+            }
+            else {
+                postData("/api/user/verify-forgot-password-otp", {
+                    email: localStorage.getItem("userEmail"),
+                    otp: otp
+                }).then((res) => {
+                    if (res?.error === false) {
+                        context.opentoast("success", res?.message)
+                        navigateTo('/forgotpassword')
+                    }
+                    else {
+                        context.opentoast("error", res?.message)
+                        setIsLoading(false)
+                    }
+                })
+            }
+        }
+        else {
+            context.alertBox("error", "Plase Enter OTP");
+        }
+
+
+    }
 
     return (
         <section className=' bg-[#f1f1f1] w-full h-full fixed top-0 left-0 overflow-y-auto scroll-smooth'  >
@@ -77,18 +127,30 @@ const VerifyAccount = () => {
                 {/* Otp  name or email creation  */}
 
                 <p className='text-center text-red-600 text-[15px] font-[500]'>OTP send to
-                    <span className='text-primary'> gopalkoli4430@gmail.com</span></p>
+                    <span className='text-primary'>
+                        {
+                            localStorage.getItem("userEmail")
+                        }
+                    </span></p>
                 <br />
                 {/* OtpBox components added here and box of the otp defined 6  */}
-                <div className='text-center flex items-center justify-center flex-col '>
-                    <OtpBox length={6} onChange={handleOtpChange} />
-                </div>
-                <br />
-                {/* Verify Button Creation  and for perfect width added in div */}
-                <div className='w-[300px] m-auto'>
+                <form onSubmit={VerityOTP}>
+                    <div className='text-center flex items-center justify-center flex-col '>
+                        <OtpBox length={6} onChange={handleOtpChange} />
+                    </div>
 
-                    <Button className='btn-green w-full'>Verify OTP</Button>
-                </div>
+                    <br />
+                    {/* Verify Button Creation  and for perfect width added in div */}
+                    <div className='w-[300px] m-auto'>
+
+                        <Button type="submit" className='btn-green w-full'>
+                            {
+                                isLoading === true ? <CircularProgress color="inherit" />
+                                    : "Verify OTP"
+                            }
+                        </Button>
+                    </div>
+                </form>
             </div>
 
 

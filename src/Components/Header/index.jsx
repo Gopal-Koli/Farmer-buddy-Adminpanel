@@ -136,7 +136,8 @@ export const Header = () => {
                 </MenuItem>
               </Menu>
 
-            </div> :
+            </div>
+             :
             
             <Button className='btn-green text-[rgb(255,255,255)] btn-sm rounded-full text-[18px]'>Sign-up</Button>
         }

@@ -29,6 +29,9 @@ import ForgotPassword from './Page/ForgotPassword/index.jsx';
 import VerifyAccount from './Page/VerifyAccount/index.jsx';
 import ChangePassword from './Page/ChangePassword/index.jsx';
 
+import toast, { Toaster } from 'react-hot-toast';
+
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -37,18 +40,16 @@ const MyContext = createContext();
 function App() {
 
   const [isLogin, setIslogin] = useState(false);
-
+  const apiUrl=import.meta.env.VITE_API_URL;
 
   const [isSidebarOpen, setisSidebarOpen] = useState(false);
 
   //for the upload products or add products
   const [isOpenFullScreenPanel, setIsOpenFullScreenPanel] = useState({
-    opem: false,
+    open: false,
     model: ''
 
   });
-
-
 
 
   // Define the router with the routes
@@ -268,9 +269,17 @@ function App() {
 
   ]);
 
-
-
-
+  const opentoast=(type,msg)=>{
+    
+    if(type==="success"){
+      toast.success(msg)
+      
+    }
+    if (type==="error"){
+      toast.error(msg)
+    }
+  }
+  
   const values = {
     isSidebarOpen,
     setisSidebarOpen,
@@ -278,7 +287,8 @@ function App() {
     setIslogin,
     isOpenFullScreenPanel,
     setIsOpenFullScreenPanel,
-
+    opentoast
+   
   };
 
   return (
@@ -341,7 +351,7 @@ function App() {
 
         </Dialog>
 
-
+      <Toaster/>
 
       </MyContext.Provider>
     </>

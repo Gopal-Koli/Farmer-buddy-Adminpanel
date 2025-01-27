@@ -65,6 +65,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 .MuiSelect-select{background: #fff !important;}
 
+/* verify account loading circle*/
 
-
-  
+.MuiCircularProgress-root{
+  width:25px !important;
+  height :25px !important
+}
