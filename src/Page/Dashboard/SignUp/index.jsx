@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import { Link, NavLink} from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdLogin } from "react-icons/md";
@@ -12,13 +12,13 @@ import { IoIosEye } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa";
 import CircularProgress from '@mui/material/CircularProgress';
 import { postData } from '../../../utils/api.js';
-import { MyContext } from '../../../App';
+import { MyContext } from '../../../App.jsx';
 
 const SignUp = () => {
 
     {/* Function Creation for sign in Loading buttons  */ }
     const [loadingGoogle, setLoadingGoogle] = React.useState(false);
-   
+
     const [isPasswordShow, setisPasswordShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
 
@@ -27,9 +27,9 @@ const SignUp = () => {
         email: "",
         password: ""
     })
-    const context =useContext(MyContext)
-    
-     const navigateTo=useNavigate()
+    const context = useContext(MyContext)
+
+    const navigateTo = useNavigate()
 
     const onChangeInput = (e) => {
         const { name, value } = e.target
@@ -44,40 +44,40 @@ const SignUp = () => {
     const validateValues = Object.values(formFields).every(el => el)
     const handleSubmit = (e) => {
         e.preventDefault()
-    
+
         setIsLoading(true)
-    
+
         if (formFields.name === "") {
-          context.opentoast("error", "Please Provide UserName")
+            context.opentoast("error", "Please Provide UserName");
         }
         if (formFields.email === "") {
-          context.opentoast("error", "Please Provide Email")
+            context.opentoast("error", "Please Provide Email");
         }
         if (formFields.password === "") {
-          context.opentoast("error", "Please Provide password")
+            context.opentoast("error", "Please Provide password");
         }
         postData('/api/user/register', formFields)
-          .then((res) => {
-    
-            if (res?.error !== true) {
-              context.opentoast("success", res?.message)
-              setIsLoading(false)
-              localStorage.setItem("userEmail",formFields.email)
-              setFormFields({
-                name: "",
-                email: "",
-                password: ""
-              })
-              navigateTo('/verify-account')
-    
-            }
-            else{
-              context.opentoast("error", res?.message)
-              setIsLoading(false)
-            }
-          })
-      };
-    
+            .then((res) => {
+
+                if (res?.error !== true) {
+                    context.opentoast("success", res?.message)
+                    setIsLoading(false)
+                    localStorage.setItem("userEmail", formFields.email)
+                    setFormFields({
+                        name: "",
+                        email: "",
+                        password: ""
+                    })
+                    navigateTo('/verify-account')
+
+                }
+                else {
+                    context.opentoast("error", res?.message)
+                    setIsLoading(false)
+                }
+            })
+    };
+
 
     function handleClickGoogle() {
         setLoadingGoogle(true);
@@ -142,18 +142,7 @@ const SignUp = () => {
                         Sign in with Google
                     </LoadingButton>
 
-                    {/* Loding Button forRegister /...sign in with Facebook 
-                    <LoadingButton
-                        onClick={handleClickFb}
-                        endIcon={<MdOutlineFacebook className='!text-[20px]' />}
-                        loading={loadingFb}
-                        loadingPosition="end"
-                        variant="outlined"
-                        className="!bg-slate-100 !text-[15px] !py-2 !capitalize text-[rgba(0,0,0,0.8)]"
-                    >
-                        Sign in with facebook
-                    </LoadingButton> 
-                    */}
+
                 </div>
 
                 <br />
@@ -219,11 +208,11 @@ const SignUp = () => {
                         <Link to="/forgot-password" className='text-primary font-[600] text-[15px] hover:underline hover:text-grey-700'>Forgot Passowrd?</Link>
                     </div>
 
-                    <Button  type='submit' className='btn-green btn-lg w-full '     disabled={!validateValues}> 
-                    {
-                        isLoading === true ? <CircularProgress color="inherit" />
-                         : "Register"
-                    }
+                    <Button type='submit' className='btn-green btn-lg w-full ' disabled={!validateValues}>
+                        {
+                            isLoading === true ? <CircularProgress color="inherit" />
+                                : "Register"
+                        }
                     </Button>
                     <br />
 

@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboard from './Page/Dashboard/index.jsx';
 import Header from '../src/Components/Header/index.jsx';
 import Sidebar from './Components/Sidebar/index.jsx';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import Login from './Page/Dashboard/Login/index.jsx'
 import SignUp from './Page/Dashboard/SignUp/index.jsx';
 import Products from './Page/Products/index.jsx';
@@ -28,7 +28,7 @@ import Orders from './Page/Orders/index.jsx';
 import ForgotPassword from './Page/ForgotPassword/index.jsx';
 import VerifyAccount from './Page/VerifyAccount/index.jsx';
 import ChangePassword from './Page/ChangePassword/index.jsx';
-
+import { fetchDataFromApi } from './utils/api';
 import toast, { Toaster } from 'react-hot-toast';
 
 
@@ -38,11 +38,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const MyContext = createContext();
 function App() {
-
-  const [isLogin, setIslogin] = useState(false);
-  const apiUrl=import.meta.env.VITE_API_URL;
-
-  const [isSidebarOpen, setisSidebarOpen] = useState(false);
+  const [userData, setUserData] = useState(null)
+  const [isLogin, setIslogin] = useState(false); const [isSidebarOpen, setisSidebarOpen] = useState(true);
 
   //for the upload products or add products
   const [isOpenFullScreenPanel, setIsOpenFullScreenPanel] = useState({
@@ -87,7 +84,7 @@ function App() {
     },
 
 
- // forgot password page Path Creation
+    // forgot password page Path Creation
 
     {
       path: "/forgot-password",
@@ -101,9 +98,9 @@ function App() {
     },
 
 
-     // Verify acoount creation OTP
+    // Verify acoount creation OTP
 
-     {
+    {
       path: "/verify-account",
 
       element: (
@@ -114,18 +111,18 @@ function App() {
       )
     },
 
-       // change password page path 
+    // change password page path 
 
-       {
-        path: "/change-password",
-  
-        element: (
-          <>
-            <ChangePassword/>
-  
-          </>
-        )
-      },
+    {
+      path: "/change-password",
+
+      element: (
+        <>
+          <ChangePassword />
+
+        </>
+      )
+    },
 
     //Register page Path Creation
     {
@@ -220,7 +217,7 @@ function App() {
     },
 
 
-//Path Creation for users 
+    //Path Creation for users 
     {
       path: "/users",
 
@@ -269,17 +266,34 @@ function App() {
 
   ]);
 
-  const opentoast=(type,msg)=>{
-    
-    if(type==="success"){
-      toast.success(msg)
-      
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken')
+    if (token !== undefined && token !== null && token !== "") {
+      setIslogin(true)
+
+      fetchDataFromApi(`/api/user/user-details?token=${token}`)
+        .then((res) => {
+          setUserData(res?.data)
+        })
     }
-    if (type==="error"){
+    else {
+      setIslogin(false)
+    }
+  }, [isLogin])
+
+
+
+  const opentoast = (type, msg) => {
+
+    if (type === "success") {
+      toast.success(msg)
+
+    }
+    if (type === "error") {
       toast.error(msg)
     }
   }
-  
+
   const values = {
     isSidebarOpen,
     setisSidebarOpen,
@@ -287,8 +301,10 @@ function App() {
     setIslogin,
     isOpenFullScreenPanel,
     setIsOpenFullScreenPanel,
-    opentoast
-   
+    opentoast,
+    setUserData,
+    userData
+
   };
 
   return (
@@ -351,7 +367,7 @@ function App() {
 
         </Dialog>
 
-      <Toaster/>
+        <Toaster />
 
       </MyContext.Provider>
     </>

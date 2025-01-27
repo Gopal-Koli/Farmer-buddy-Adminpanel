@@ -32,51 +32,9 @@ const VerifyAccount = () => {
         setotp(value);
     }
 
-    const VerityOTP = (e) => {
-        e.preventDefault();
-        {/*If otp not equal to null the furher process if otp is null show the Plse enter opt msg */ }
-        if (otp !== "") {
-            setIsLoading(true)
-            const actionType = localStorage.getItem("actionType")
-
-            if (actionType !== "forgot-password") {
-                postData("/api/user/verifyEmail", {
-                    email: localStorage.getItem("userEmail"),
-                    otp: otp
-                }).then((res) => {
-                    if (res?.error === false) {
-                        context.opentoast("success", res?.message)
-                        setIsLoading(false)
-                        history('/login')
-                    }
-                    else {
-                        context.opentoast("error", res?.message)
-                        setIsLoading(false)
-                    }
-                })
-            }
-            else {
-                postData("/api/user/verify-forgot-password-otp", {
-                    email: localStorage.getItem("userEmail"),
-                    otp: otp
-                }).then((res) => {
-                    if (res?.error === false) {
-                        context.opentoast("success", res?.message)
-                        navigateTo('/forgotpassword')
-                    }
-                    else {
-                        context.opentoast("error", res?.message)
-                        setIsLoading(false)
-                    }
-                })
-            }
-        }
-        else {
-            context.alertBox("error", "Plase Enter OTP");
-        }
 
 
-    }
+
 
     return (
         <section className=' bg-[#f1f1f1] w-full h-full fixed top-0 left-0 overflow-y-auto scroll-smooth'  >
@@ -134,7 +92,41 @@ const VerifyAccount = () => {
                     </span></p>
                 <br />
                 {/* OtpBox components added here and box of the otp defined 6  */}
-                <form onSubmit={VerityOTP}>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    const actionType = localStorage.getItem("actionType");
+
+                    if (actionType !== "forgot-password") {
+                        postData("/api/user/verifyEmail", {
+                            email: localStorage.getItem("userEmail"),
+                            otp: otp
+                        }).then((res) => {
+                            if (res?.error === false) {
+                                context.opentoast("success", res?.message);
+                                navigateTo('/login');
+                            }
+                            else {
+                                context.opentoast("error", res?.message);
+                            }
+                        });
+                    }
+                    else {
+                        postData("/api/user/verify-forgot-password-otp", {
+                            email: localStorage.getItem("userEmail"),
+                            otp: otp
+                        }).then((res) => {
+                            if (res?.error === false) {
+                                context.opentoast("success", res?.message);
+                                navigateTo('/change-password');
+                            }
+                            else {
+                                context.opentoast("error", res?.message);
+                            }
+                        })
+                    }
+
+                }
+                }>
                     <div className='text-center flex items-center justify-center flex-col '>
                         <OtpBox length={6} onChange={handleOtpChange} />
                     </div>

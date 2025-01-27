@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 
 
@@ -8,15 +8,13 @@ import React, { useState } from 'react';
 {/* Icons starts from here  */ }
 import { MdLogin } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
-import LoadingButton from '@mui/lab/LoadingButton';
-import { FcGoogle } from "react-icons/fc";
-import { GiFarmTractor } from "react-icons/gi";
-import { MdOutlineFacebook } from "react-icons/md";
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
+
 import { IoIosEye } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa";
-
+import CircularProgress from '@mui/material/CircularProgress';
+import { postData } from '../../utils/api.js';
+import { useContext } from 'react';
+import { MyContext } from '../../App';
 
 const ChangePassword = () => {
 
@@ -25,15 +23,70 @@ const ChangePassword = () => {
 
     const [isPasswordShow, setisPasswordShow] = useState(false);
     const [isPasswordShow2, setisPasswordShow2] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
 
-    function handleClickGoogle() {
-        setLoadingGoogle(true);
+    const [formFields, setFormFields] = useState({
+        email: localStorage.getItem("userEmail"),
+        newPassword: '',
+        confirmPassword: ''
+    })
+    const context = useContext(MyContext);
+    const navigateTo = useNavigate()
+
+
+    const onChangeInput = (e) => {
+        const { name, value } = e.target
+        setFormFields(() => {
+            return {
+                ...formFields,
+                [name]: value
+            }
+        })
     }
 
-    function handleClickFb() {
-        setLoadingFb(true);
-    }
+    const validateValues = Object.values(formFields).every(el => el)
 
+    const handleSubmit = (e) => {
+
+        e.preventDefault()
+
+        setIsLoading(true)
+
+        if (formFields.newPassword === "") {
+            context.opentoast("error", "Please Provide new password")
+            setIsLoading(false)
+            return false
+        }
+        if (formFields.confirmPassword === "") {
+            context.opentoast("error", "Please Provide confirm password")
+            setIsLoading(false)
+            return false
+        }
+        if (formFields.confirmPassword !== formFields.newPassword) {
+            context.opentoast("error", "New Password and Confirm Password not match")
+            setIsLoading(false)
+            return false
+        }
+
+        postData(`/api/user/reset-password`, {
+            email: localStorage.getItem("userEmail"),
+            ...formFields
+        }
+        ).then((res) => {
+            if (res?.error === false) {
+                console.log(res)
+                localStorage.removeItem("userEmail")
+                localStorage.removeItem("actionType")
+                setIsLoading(false)
+                context.opentoast("success", res?.message)
+                navigateTo('/login')
+            }
+            else {
+                context.opentoast("error", res?.message)
+            }
+        })
+
+    };
 
 
     return (
@@ -90,7 +143,7 @@ const ChangePassword = () => {
 
                 <br />
 
-                <form className='w-full px-9'>
+                <form className='w-full px-9' onSubmit={handleSubmit} >
 
                     {/* Password Creation  */}
 
@@ -98,9 +151,16 @@ const ChangePassword = () => {
                         <h4 className='text-[14px] font-[500] mb-1'>New Password </h4>
                         <div className='relative w-full'>
                             {/* condtion for eye open close show passwoed or not  */}
-                            <input type={isPasswordShow === false ? 'password' : 'text'} className="w-full h-[50px] border   border-[rgba(0,0,0,0.4)] rounded-md focus:border-[rgba(0,0,0,0.7)] focus:outline-none px-3" placeholder='Enter your Password'>
-                            </input>
-                            <Button className='!absolute top-[7px] right-[10px] z-50 !rounded-full !w-[35px] !h-[35px] !bg-white !min-w-[35px] !text-gray-600' onClick={() => setisPasswordShow(!isPasswordShow)}>
+                            <input type={isPasswordShow === false ? 'password' : 'text'}
+                                className="w-full h-[50px] border   border-[rgba(0,0,0,0.4)] rounded-md 
+                            focus:border-[rgba(0,0,0,0.7)] focus:outline-none px-3" placeholder='Enter your Password'
+                                name='newPassword'
+                                label='new password'
+                                onChange={onChangeInput}
+                                disabled={isLoading === true ? true : false}
+                            />
+                            <Button className='!absolute top-[7px] right-[10px] z-50 !rounded-full !w-[35px] !h-[35px]
+                             !bg-white !min-w-[35px] !text-gray-600' onClick={() => setisPasswordShow(!isPasswordShow)}>
                                 {
                                     isPasswordShow === false ? <IoIosEye className='text-[25px]' /> : <FaEyeSlash className='text-[25px]' />
                                 }
@@ -115,10 +175,17 @@ const ChangePassword = () => {
                         <h4 className='text-[14px] font-[500] mb-1'>Confirm Password </h4>
                         <div className='relative w-full'>
                             {/* condtion for eye open close show passwoed or not  */}
-                            <input type={isPasswordShow2 === false ? 'password' : 'text'} className="w-full h-[50px] border   border-[rgba(0,0,0,0.4)] rounded-md focus:border-[rgba(0,0,0,0.7)] focus:outline-none px-3" placeholder='Enter your Password'>
-                            </input>
-                            <Button className='!absolute top-[7px] right-[10px] z-50 !rounded-full !w-[35px] !h-[35px] !bg-white !min-w-[35px] !text-gray-600'
-                             onClick={() => setisPasswordShow2 (!isPasswordShow2)}>
+                            <input type={isPasswordShow2 === false ? 'password' : 'text'} className="w-full h-[50px] border  
+                             border-[rgba(0,0,0,0.4)] rounded-md focus:border-[rgba(0,0,0,0.7)] focus:outline-none px-3"
+                                placeholder='Enter your Password'
+                                name='confirmPassword'
+                                label='confirm password'
+                                onChange={onChangeInput}
+                                disabled={isLoading === true ? true : false}
+                            />
+                            <Button className='!absolute top-[7px] right-[10px] z-50 !rounded-full !w-[35px] !h-[35px]
+                             !bg-white !min-w-[35px] !text-gray-600'
+                                onClick={() => setisPasswordShow2(!isPasswordShow2)}>
                                 {
                                     isPasswordShow2 === false ? <IoIosEye className='text-[25px]' /> : <FaEyeSlash className='text-[25px]' />
                                 }
@@ -127,8 +194,12 @@ const ChangePassword = () => {
                         </div>
                     </div>
 
-           
-                    <Button className='btn-green btn-lg w-full '> Change Password</Button>
+
+                    <Button type="submit" disabled={!validateValues} className='btn-green btn-lg w-full '>
+                        {
+                            isLoading === true ? <CircularProgress color="inherit" /> : "Change Password"
+                        }
+                    </Button>
                     <br />
 
 

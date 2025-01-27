@@ -1,4 +1,4 @@
-import { Button, CircularProgress } from '@mui/material';
+import { Button } from '@mui/material';
 
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import React, { useContext, useState } from 'react';
@@ -18,6 +18,7 @@ import { IoIosEye } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa";
 import { postData } from '../../../utils/api';
 import { MyContext } from '../../../App.jsx';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const Login = () => {
@@ -50,6 +51,34 @@ const Login = () => {
         })
     }
     const validateValues = Object.values(formFields).every(el => el)
+
+    //for password forgot 
+    const forgotPassword = () => {
+        if (formFields.email === "") {
+            context.opentoast("error", "Please Provide Email")
+            return false
+        }
+        else {
+            localStorage.setItem("userEmail", formFields.email)
+            localStorage.setItem("actionType", "forgot-password")
+
+            postData("/api/user/forgot-password", {
+                email: formFields.email
+            }).then((res) => {
+                if (res?.error === false) {
+                    context.opentoast("success", res?.message)
+                    navigateTo('/verif-account')
+                }
+                else {
+                    context.opentoast("error", res?.message)
+                }
+            })
+
+            context.opentoast('success', `OTP sended successfully to ${formFields.email}`)
+        }
+    }
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -75,7 +104,9 @@ const Login = () => {
                     localStorage.setItem("accessToken", res?.data?.accessToken)
                     localStorage.setItem("refreshToken", res?.data?.refreshToken)
                     navigateTo('/')
+
                     context.setisLogin(true)
+
                 }
                 else {
                     context.opentoast("error", res?.message)
@@ -144,19 +175,7 @@ const Login = () => {
                         Sign in with Google
                     </LoadingButton>
 
-                    {/* Loding Button for Sign-in  /...sign in with Facebook  
-                    
-                    <LoadingButton
-                        onClick={handleClickFb}
-                        endIcon={<MdOutlineFacebook className='!text-[20px]' />}
-                        loading={loadingFb}
-                        loadingPosition="end"
-                        variant="outlined"
-                        className="!bg-slate-100 !text-[15px] !py-2 !capitalize text-[rgba(0,0,0,0.8)]"
-                    >
-                        Sign in with facebook
-                    </LoadingButton>
-                    */}
+
                 </div>
 
 
@@ -203,16 +222,19 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <div className='form-group mb-4 w-full flex items-center justify-between'>
+                    <div className='form-group mb-4 w-full flex items-center justify-between cursor-pointer'>
                         <FormControlLabel control={<Checkbox defaultChecked />} label="Remember me" />
 
-                        <Link to="/forgot-password" className='text-primary font-[600] text-[15px] hover:underline hover:text-grey-700'>Forgot Passowrd?</Link>
+                        <a
+                            onClick={forgotPassword}
+                            className='text-primary font-[600] text-[15px] hover:underline hover:text-grey-700'>Forgot Passowrd?
+                        </a>
                     </div>
 
-                    <Button type='submit'  disabled={!validateValues} className='btn-green btn-lg w-full '>
+                    <Button type='submit' disabled={!validateValues} className='btn-green btn-lg w-full '>
                         {
-                            isLoading === true ? <CircularProgress color="inherit" /> 
-                            : "Sign In"
+                            isLoading === true ? <CircularProgress color="inherit" />
+                                : "Sign In"
                         }
 
                     </Button>

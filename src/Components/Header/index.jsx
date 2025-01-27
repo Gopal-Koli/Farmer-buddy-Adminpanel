@@ -114,8 +114,13 @@ export const Header = () => {
 
                     </div>
                     <div className="info">{/* Account Name,email information etc*/}
-                      <h3 className='text-[15px]font-[500] leading-5'>Gopal & Harsh</h3>
-                      <p className='text-[12px] font-[400] opacity-50'>gopalharsh4430@gmail.com</p>
+                      <h3 className='text-[15px]font-[500] leading-5'>
+                        {context?.userData?.name}
+
+                      </h3>
+                      <p className='text-[12px] font-[400] opacity-50'>
+                      {context?.userData?.email}
+                        </p>
 
 
                     </div>
