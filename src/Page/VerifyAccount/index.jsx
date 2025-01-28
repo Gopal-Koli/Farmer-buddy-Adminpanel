@@ -46,14 +46,14 @@ const VerifyAccount = () => {
 
                 {/* headre login and reguster buttton creation            */}
                 <div className='flex items-center gap-3'>
-                    <NavLink to="/login" exact={true} activeClassName="isActive">
+                    <NavLink to="/login"   className={({ isActive }) => (isActive ? "active" : "")}>
                         <Button className="border !bg-blue-300 !text-[18px] !rounded-lg !px-5 !py-2  flex gap-1">
                             <MdLogin className='text-[18px]' />Login
                         </Button>
                     </NavLink>
 
                     {/* Register button   */}
-                    <NavLink to="/sign-up" exact={true} activeClassName="isActive">
+                    <NavLink to="/sign-up"   className={({ isActive }) => (isActive ? "active" : "")}>
                         <Button className="border !bg-blue-300 !text-[18px] !rounded-lg !px-5 !py-2  flex gap-1 ">
                             < FaRegUser className='text-[18px] ' />Register
                         </Button>
