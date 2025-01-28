@@ -18,6 +18,8 @@ import { IoMdCloudUpload } from "react-icons/io";
 
 const AddProduct = () => {
 
+    
+
     const [productCat, setProductCat] = React.useState('');
     const [productSubCat, setProductSubCat] = React.useState('');
     const [productFeatured, setProductFeatured] = React.useState('');

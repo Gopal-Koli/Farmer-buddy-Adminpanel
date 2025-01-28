@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Button from '@mui/material/Button';
-
+import { Link } from 'react-router-dom';
 // To Add a Menu Icon
 import { IoMdMenu } from "react-icons/io";
 
@@ -126,14 +126,16 @@ export const Header = () => {
                     </div>
 
                   </div>
+                 
                 </MenuItem>
                 <Divider />
+                <Link to="/profile">
 
                 {/* profile and Logout Section */}
                 <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
                   <FaUser className='text-[17px]' /> <span className='text-[14px] '> Profile </span>{/* To Add Profile  */}
                 </MenuItem>
-
+                </Link>
 
 
                 <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>

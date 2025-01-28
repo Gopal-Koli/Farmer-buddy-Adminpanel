@@ -30,6 +30,7 @@ import VerifyAccount from './Page/VerifyAccount/index.jsx';
 import ChangePassword from './Page/ChangePassword/index.jsx';
 import { fetchDataFromApi } from './utils/api';
 import toast, { Toaster } from 'react-hot-toast';
+import Profile from './Page/Profile/index.jsx';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -261,6 +262,27 @@ function App() {
         </>
       )
     },
+//Path Creation for profile
+{
+  path: "/profile",
+
+  element: (
+    <> <section className='main'>
+      <Header />
+      <div className='contentMain flex'>
+        <div className="sidebarWrapper w-[18%]">
+          <Sidebar />
+        </div>
+        <div className="contentRight py-4 px-4 w-[82%]">
+          < Profile />
+        </div>
+      </div>
+
+
+    </section>
+    </>
+  )
+},
 
 
 
