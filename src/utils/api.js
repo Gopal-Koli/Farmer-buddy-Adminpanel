@@ -63,6 +63,25 @@ export const uploadImage = async (url, updateData) => {
     }
 };
 
+export const uploadImages = async (url, formData) => {
+    console.log(localStorage.getItem('accessToken'))
+    try{
+        const params={
+            headers:{
+                "Authorization":`Bearer ${localStorage.getItem('accessToken')}`,
+                 'Content-Type':'application/form-data'
+            },
+        }
+        const {data}=await axios.put(apiUrl+url,formData,params)
+        return data;
+        
+    }
+    catch(error){
+        console.log(error);
+        return error
+    }
+};
+
 export const editData=async(url,updateData)=>{
     try{
         const params={
@@ -79,4 +98,15 @@ export const editData=async(url,updateData)=>{
         console.log(error);
         return error
     }
+}
+
+export const removeImages=async(url,image)=>{
+    const params={
+        headers:{
+            "Authorization":`Bearer ${localStorage.getItem('accessToken')}`,
+             'Content-Type':'application/json'
+        },
+    }
+    const{res}=await axios.remove(apiUrl+url,image.params);
+    return res;
 }
